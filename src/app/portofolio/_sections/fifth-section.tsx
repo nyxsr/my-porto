@@ -24,7 +24,6 @@ function FifthSection({
   inView: boolean;
 }) {
   const textAnimateControls = useAnimationControls();
-  const endTextAnimateControls = useAnimationControls();
   const { scrollYProgress } = useScroll({
     target: fifthSectionRef as RefObject<HTMLElement>,
     offset: ["start end", "end start"],
@@ -32,7 +31,11 @@ function FifthSection({
   const y = useTransform(scrollYProgress, [0, 0.5, 1], [-1000, 0, 1000]);
   const reactY = useTransform(scrollYProgress, [0, 1], [-300, 500]);
   const tailwindY = useTransform(scrollYProgress, [0, 1], [-100, 300]);
-  const smallTextOpacity = useTransform(scrollYProgress, [0, 0.63, 0.64], [0, 0, 1]);
+  const smallTextOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.63, 0.64],
+    [0, 0, 1],
+  );
 
   React.useEffect(() => {
     if (inView) {
@@ -48,6 +51,25 @@ function FifthSection({
       });
     }
   }, [inView]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest >= 0.2 && latest <= 0.90) {
+      textAnimateControls.start({
+        opacity: 1,
+        transition: {
+          duration: 1,
+        },
+      });
+    } else if (latest === 1) {
+      textAnimateControls.start({
+        opacity: 0,
+      });
+    } else {
+      textAnimateControls.start({
+        opacity: 0,
+      });
+    }
+  });
 
   return (
     <section
