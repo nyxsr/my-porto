@@ -85,7 +85,7 @@ function SixthSection({ savedName }: { savedName: string }) {
         <Link
           onMouseEnter={() => setHoveredItem(1)}
           onMouseLeave={() => setHoveredItem(null)}
-          href={"https://www.linkedin.com/in/sahrul-ramdan-2012/"}
+          href={"mailto:sahrulramdan.75@gmail.com"}
           className={twMerge(
             `ml-10 py-3 text-[2rem]`,
             hoveredItem === 0 && "opacity-50",
