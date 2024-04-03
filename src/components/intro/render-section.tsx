@@ -32,12 +32,11 @@ export const renderIntro = () => {
     const localName = localStorage.getItem("user_name_porto");
     setSavedName(localName ?? "");
   }, []);
-  
 
   return (
     <AnimatePresence>
       {step === 0 && <Step0 />}
-      {(step === 1 && (savedName === "" || !savedName)) && (
+      {step === 1 && (savedName === "" || !savedName) && (
         <Step1
           isSubmitted={isSubmitted}
           setIsSubmitted={setIsSubmitted}
@@ -46,7 +45,7 @@ export const renderIntro = () => {
           name={name}
         />
       )}
-      {((savedName !== "" || savedName) && step === 1) && (
+      {(savedName !== "" && step === 1) && (
         <AltStep1 savedName={savedName} setStep={setStep} />
       )}
       {step === 2 && (
