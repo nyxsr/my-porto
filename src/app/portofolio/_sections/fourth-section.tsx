@@ -33,7 +33,7 @@ function FourthSection({
       viewport={{ once: true }}
       className="relative z-0 mx-10 mt-[10rem] flex min-h-screen snap-center flex-col items-start justify-center"
     >
-      <h2 className="absolute right-0 top-0 text-[3rem]">Selected Works</h2>
+      <h2 className="static text-right md:absolute right-0 top-0 text-[3rem]">Selected Works</h2>
       <motion.div
         viewport={{ once: true }}
         initial={{ opacity: 0 }}
@@ -43,7 +43,7 @@ function FourthSection({
             duration: 1,
           },
         }}
-        className="flex max-w-[70%] flex-col gap-5"
+        className="flex max-w-[100%] md:max-w-[70%] flex-col gap-5"
       >
         {WORK_LIST.map((item, index) => (
           <ItemList

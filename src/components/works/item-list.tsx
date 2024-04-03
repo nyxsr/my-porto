@@ -2,24 +2,54 @@ import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
+import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
 
-function ItemList({ label, thumb, description,index }: { label: string; thumb: StaticImageData, description: string | React.ReactNode, index: number }) {
-    const [isVisible, setIsVisible] = React.useState(false);
-    const itemRef = React.useRef<HTMLParagraphElement>(null);
-    const menuRef = React.useRef<HTMLDivElement>(null);
-    const itemOnHover = (e: React.MouseEvent) => {
-        if (menuRef.current) {
-            setIsVisible(true);
-            menuRef.current.style.left = e.clientX + "px";
-            menuRef.current.style.top = (e.clientY + (index > 1 ? -350 : 0)) + "px";
-        }
+function ItemList({
+  label,
+  thumb,
+  description,
+  index,
+}: {
+  label: string;
+  thumb: StaticImageData;
+  description: string | React.ReactNode;
+  index: number;
+}) {
+  const isMobileDevice = useCheckDeviceScreen();
+  const [isVisible, setIsVisible] = React.useState(false);
+  const itemRef = React.useRef<HTMLParagraphElement>(null);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+  const itemOnHover = (e: React.MouseEvent) => {
+    if (menuRef.current) {
+      setIsVisible(true);
+      menuRef.current.style.left = e.clientX + "px";
+      menuRef.current.style.top = e.clientY + (index > 1 ? -350 : 0) + "px";
     }
+  };
   return (
-    <motion.div initial={{ opacity: 0, x: 100 }} viewport={{ once: true }} animate={{ opacity: 1, x:0, transition:{duration:.5, delay: 0.2 * index} }} id="item">
-        <motion.div ref={menuRef} animate={{ scaleX: isVisible ? 1 : 0 }} className="absolute text-[#1f1f1f] max-w-[20rem] z-20 p-3 bg-white">
-            <Image src={thumb} alt={label} width={300} height={300} />
-            <div className="mt-3">{description}</div>
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      viewport={{ once: true }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.5, delay: 0.2 * index },
+      }}
+      id="item"
+    >
+      {!isMobileDevice && (
+        <motion.div
+          ref={menuRef}
+          animate={{ scaleX: isVisible ? 1 : 0 }}
+          className="absolute z-20 max-w-[20rem] bg-white p-3 text-[#1f1f1f]"
+        >
+          <Image src={thumb} alt={label} width={300} height={300} />
+          <div className="mt-3">{description}</div>
         </motion.div>
+      )}
+      {isMobileDevice ? (
+        <button className="focus:bg-[#f0fb3b] focus:text-[#1f1f1f] w-full text-left">{label}</button>
+      ) : (
       <p
         ref={itemRef}
         onMouseEnter={itemOnHover}
@@ -31,6 +61,7 @@ function ItemList({ label, thumb, description,index }: { label: string; thumb: S
       >
         {label}
       </p>
+      )}
     </motion.div>
   );
 }

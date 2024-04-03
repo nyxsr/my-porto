@@ -11,12 +11,12 @@ function FirstSection({firstSectionRef}: {firstSectionRef: React.Ref<HTMLDivElem
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 1, delay: 0.5 } }}
-          className="max-w-[80vw] relative z-10 text-[5rem] font-semibold"
+          className="md:max-w-[80vw] relative z-10 text-[2rem] md:text-[5rem] font-semibold"
         >
           love to <span className="text-[#F0FB3B]">create apps</span> and always{" "}
           <span className="text-[#F0FB3B]">love to learn</span>.
         </motion.h1>
-        <p className="max-w-[40vw] text-sm">
+        <p className="md:max-w-[40vw] text-sm">
           A persistent person who loves to solve problems by crafting innovative
           digital products that can help people. Experienced in designing and
           developing an app in the early stage until finished. Problem-solver
