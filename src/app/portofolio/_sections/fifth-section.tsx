@@ -28,7 +28,7 @@ function FifthSection({
     target: fifthSectionRef as RefObject<HTMLElement>,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [-1000, 0, 1000]);
+  const y = useTransform(scrollYProgress, [0, 0.5,0.9, 1], [-1000, 100, 1000, 1200]);
   const reactY = useTransform(scrollYProgress, [0, 1], [-300, 500]);
   const tailwindY = useTransform(scrollYProgress, [0, 1], [-100, 300]);
   const smallTextOpacity = useTransform(

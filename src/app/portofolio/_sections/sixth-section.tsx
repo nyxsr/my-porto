@@ -34,7 +34,7 @@ function SixthSection({ savedName }: { savedName: string }) {
             key={"linkedin"}
             src={LinkedinBG}
             alt="LinkedinBG"
-            className="fixed left-0 top-0 -z-10 brightness-50"
+            className="fixed min-w-[100vw] object-cover left-0 top-0 -z-10 brightness-50"
           />
         )}
         {hoveredItem === 1 && (
@@ -45,7 +45,7 @@ function SixthSection({ savedName }: { savedName: string }) {
             key={"email"}
             src={EmailBG}
             alt="emailBG"
-            className="fixed left-0 top-0 -z-10 brightness-[25%]"
+            className="fixed min-w-[100vw] object-cover left-0 top-0 -z-10 brightness-[25%]"
           />
         )}
       </AnimatePresence>
