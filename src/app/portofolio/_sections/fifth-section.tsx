@@ -5,6 +5,7 @@ import {
   TailwindLogo,
 } from "@/assets/images";
 import { FramerLogo } from "@/assets/svgs";
+import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
 import {
   useScroll,
   useTransform,
@@ -24,11 +25,16 @@ function FifthSection({
   inView: boolean;
 }) {
   const textAnimateControls = useAnimationControls();
+  const isMobileDevice = useCheckDeviceScreen();
   const { scrollYProgress } = useScroll({
     target: fifthSectionRef as RefObject<HTMLElement>,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 0.5,0.9, 1], [-1000, 100, 1000, 1200]);
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.5, 0.9, 1],
+    isMobileDevice ? [0, 100, 500, 600] : [-1000, 100, 1000, 1200],
+  );
   const reactY = useTransform(scrollYProgress, [0, 1], [-300, 500]);
   const tailwindY = useTransform(scrollYProgress, [0, 1], [-100, 300]);
   const smallTextOpacity = useTransform(
@@ -53,7 +59,7 @@ function FifthSection({
   }, [inView]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest >= 0.2 && latest <= 0.90) {
+    if (latest >= 0.2 && latest <= 0.9) {
       textAnimateControls.start({
         opacity: 1,
         transition: {
@@ -74,37 +80,37 @@ function FifthSection({
   return (
     <section
       ref={fifthSectionRef}
-      className="relative z-0 mx-10 mt-[10rem] flex min-h-[200vh] snap-center flex-col items-center justify-center"
+      className="relative z-0 mx-10 mt-[10rem] flex min-h-[150vh] snap-center flex-col items-center justify-center md:min-h-[200vh]"
     >
       <AnimatedImage
         src={NextLogo}
         alt="nextjs logo"
-        width={500}
-        height={200}
+        width={isMobileDevice ? 300 : 500}
+        height={isMobileDevice ? 150 : 200}
         className="absolute left-0 opacity-25 invert filter"
       />
       <AnimatedImage
         style={{ y: reactY }}
         src={ReactLogo}
         alt="reactjs logo"
-        width={500}
-        height={200}
+        width={isMobileDevice ? 150 : 500}
+        height={isMobileDevice ? 150 : 200}
         className="absolute right-0 top-[15%] opacity-25"
       />
       <AnimatedImage
         style={{ y: tailwindY }}
         src={TailwindLogo}
         alt="tailwind logo"
-        width={300}
-        height={200}
+        width={isMobileDevice ? 150 : 300}
+        height={isMobileDevice ? 75 : 200}
         className="absolute bottom-[20%] left-[10%] m-auto opacity-25"
       />
       <AnimatedImage
         src={FramerLogo}
         alt="framer logo"
-        width={400}
-        height={200}
-        className="absolute bottom-[10%] right-[15%] m-auto opacity-25"
+        width={isMobileDevice ? 200 : 400}
+        height={isMobileDevice ? 150 : 200}
+        className="absolute bottom-[10%] right-0 md:right-[15%] m-auto opacity-25"
       />
       <AnimatedImage
         src={ExpressLogo}
@@ -119,17 +125,17 @@ function FifthSection({
         style={{ y }}
         className="absolute z-20 max-w-[60vw]"
       >
-        <p className="text-[2.5rem]">
+        <p className="text-[1rem] md:text-[2.5rem]">
           I am always enjoying every step for{" "}
           <span className="text-[#F0FB3B]">creating a great product</span> yet{" "}
           <span className="text-[#F0FB3B]">beautiful</span> design
         </p>
-        <p className="text-[5rem] font-semibold">
+        <p className="text-[1.5rem] font-semibold md:text-[5rem]">
           To achieve that i usually use these
         </p>
         <motion.p
           style={{ opacity: smallTextOpacity }}
-          className="text-[2.5rem] italic"
+          className="text-[1.25rem] italic md:text-[2.5rem]"
         >
           and the list wont end here...
         </motion.p>

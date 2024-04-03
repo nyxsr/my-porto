@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 function page() {
   const [savedName, setSavedName] = React.useState("");
-  const router = useRouter()
+  const router = useRouter();
   const isMobileDevice = useCheckDeviceScreen();
   const { scrollYProgress } = useScroll();
   const [topHovered, setTopHovered] = React.useState(false);
@@ -38,6 +38,35 @@ function page() {
     [0, -100, -100, 0],
   );
 
+  const mobileTopCircleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0.5, 0.8, 0.8, 0.8],
+  );
+
+  const mobileBottomCircleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0.5, 1, 1, 1],
+  );
+
+  const mobileTopCircleStyle = isMobileDevice
+    ? {
+        opacity: mobileTopCircleOpacity,
+      }
+    : undefined;
+
+  const bottomCircleStyle = isMobileDevice
+    ? {
+        height: firstInView ? "10rem" : "7rem",
+        width: firstInView ? "10rem" : "7rem",
+        opacity: mobileBottomCircleOpacity,
+      }
+    : {
+        height: firstInView ? "30rem" : "17rem",
+        width: firstInView ? "30rem" : "17rem",
+      };
+
   React.useEffect(() => {
     const localName = localStorage.getItem("user_name_porto");
     setSavedName(localName as string);
@@ -50,36 +79,29 @@ function page() {
       id="main"
       className="no-scrollbar relative snap-y snap-mandatory overflow-x-hidden overflow-y-scroll"
     >
-      {isMobileDevice ? (
-        <section className="mx-auto flex min-h-screen max-w-[85vw] flex-col items-center justify-center text-center">
-          <p className="text-sm">sorry, i'm still working on mobile version</p>
-          <p className="text-lg font-medium leading-5">
-            but you still can reach me on
-          </p>
-          <div className="mt-5 flex gap-4">
-            <Link
-              href="https://www.linkedin.com/in/sahrul-ramdan-2012/"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="bg-[#f0fb3b] px-2 text-black"
-            >
-              LinkedIn
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/sahrul-ramdan-2012/"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="bg-[#f0fb3b] px-2 text-black"
-            >
-              Email
-            </Link>
-          </div>
-        </section>
-      ) : (
-        <>
+      <>
+        <motion.div
+          animate={{
+            rotate: 360,
+            transition: {
+              duration: 100,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
+            },
+          }}
+          style={{ y: topCircleY, ...mobileTopCircleStyle }}
+          className={twMerge(
+            `fixed -left-[8rem] -top-[5.5rem] z-[10] rounded-full border-4 border-dashed border-white p-3 transition-all md:p-10`,
+            fourthInView && "border-white/30",
+          )}
+        >
           <motion.div
+            onMouseEnter={() => setTopHovered(true)}
+            onMouseLeave={() => setTopHovered(false)}
+            onClick={() => router.push("/")}
             animate={{
-              rotate: 360,
+              rotate: 420,
               transition: {
                 duration: 100,
                 ease: "linear",
@@ -87,34 +109,27 @@ function page() {
                 repeatType: "loop",
               },
             }}
-            style={{ y: topCircleY }}
             className={twMerge(
-              `fixed -left-[8rem] -top-[5.5rem] z-[10] rounded-full border-4 border-dashed border-white p-10 transition-all`,
+              `h-[15rem] w-[15rem] cursor-pointer rounded-full border-2 border-dashed border-white transition-all hover:bg-[#f0fb3b]/50`,
               fourthInView && "border-white/30",
             )}
-          >
-            <motion.div
-              onMouseEnter={() => setTopHovered(true)}
-              onMouseLeave={() => setTopHovered(false)}
-              onClick={()=> router.push("/")}
-              animate={{
-                rotate: 420,
-                transition: {
-                  duration: 100,
-                  ease: "linear",
-                  repeat: Infinity,
-                  repeatType: "loop",
-                },
-              }}
-              className={twMerge(
-                `h-[15rem] cursor-pointer w-[15rem] rounded-full border-2 border-dashed border-white transition-all hover:bg-[#f0fb3b]/50`,
-                fourthInView && "border-white/30",
-              )}
-            ></motion.div>
-          </motion.div>
+          ></motion.div>
+        </motion.div>
+        <motion.div
+          animate={{
+            rotate: 360,
+            transition: {
+              duration: 100,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
+            },
+          }}
+          className="fixed -bottom-[5.5rem] -right-[8rem] z-20 opacity-50 md:opacity-100 rounded-full border-4 border-dashed border-white p-10"
+        >
           <motion.div
             animate={{
-              rotate: 360,
+              rotate: 420,
               transition: {
                 duration: 100,
                 ease: "linear",
@@ -122,29 +137,16 @@ function page() {
                 repeatType: "loop",
               },
             }}
-            className="fixed -bottom-[5.5rem] -right-[8rem] z-20 rounded-full border-4 border-dashed border-white p-10"
-          >
-            <motion.div
-              animate={{
-                rotate: 420,
-                transition: {
-                  duration: 100,
-                  ease: "linear",
-                  repeat: Infinity,
-                  repeatType: "loop",
-                },
-              }}
-              style={{
-                height: firstInView ? "30rem" : "17rem",
-                width: firstInView ? "30rem" : "17rem",
-              }}
-              className="z-20 flex items-center justify-center rounded-full border-2 border-dashed border-white transition-all"
-            ></motion.div>
-          </motion.div>
+            style={bottomCircleStyle}
+            className="flex items-center justify-center rounded-full border-2 border-dashed border-white transition-all md:z-20"
+          ></motion.div>
+        </motion.div>
+        {!isMobileDevice && (
           <div
             className={twMerge(
-              `fixed bottom-[10rem] right-[3rem] z-20 w-[15rem] text-center`,
-              !firstInView && "bottom-[5.5rem] right-[1.25rem] w-fit",
+              `fixed bottom-[4rem] right-[1rem] z-20 w-[15rem] text-center md:bottom-[10rem] md:right-[3rem]`,
+              !firstInView &&
+                "bottom-[2rem] right-0 w-fit md:bottom-[5.5rem] md:right-[1.25rem]",
             )}
           >
             <button className="transition-all hover:bg-[#f0fb3b] hover:text-black ">
@@ -153,26 +155,23 @@ function page() {
                 : "download cv"}
             </button>
           </div>
-          {topHovered && (
-            <div className="fixed left-0 top-[3rem]">
-              <p className="text-[1.5rem]">back to intro</p>
-            </div>
-          )}
+        )}
+        {topHovered && (
+          <div className="fixed left-0 top-[3rem]">
+            <p className="text-[1.5rem]">back to intro</p>
+          </div>
+        )}
 
-          <FirstSection firstSectionRef={firstSectionRef} />
-          <SecondSection
-            savedName={savedName}
-            secondSectionRef={secondSectionRef}
-          />
-          <ThirdSection thirdSectionRef={thirdSectionRef} />
-          <FourthSection fourthSectionRef={fourthSectionRef} />
-          <FifthSection
-            fifthSectionRef={fifthSectionRef}
-            inView={fifthInView}
-          />
-          <SixthSection savedName={savedName} />
-        </>
-      )}
+        <FirstSection firstSectionRef={firstSectionRef} />
+        <SecondSection
+          savedName={savedName}
+          secondSectionRef={secondSectionRef}
+        />
+        <ThirdSection thirdSectionRef={thirdSectionRef} />
+        <FourthSection fourthSectionRef={fourthSectionRef} />
+        <FifthSection fifthSectionRef={fifthSectionRef} inView={fifthInView} />
+        <SixthSection savedName={savedName} />
+      </>
     </motion.main>
   );
 }

@@ -2,6 +2,7 @@ import React, { RefObject, useEffect } from "react";
 import { motion, useAnimationControls, useInView } from "framer-motion";
 import { Myself } from "@/assets/images";
 import Image from "next/image";
+import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
 
 function SecondSection({
   secondSectionRef,
@@ -10,6 +11,7 @@ function SecondSection({
   secondSectionRef: React.Ref<HTMLDivElement>;
   savedName: string
 }) {
+  const isMobileDevice = useCheckDeviceScreen();
   const myPhotoRef = React.useRef<HTMLImageElement | null>(null);
   const [isVisible, setIsVisible] = React.useState(false);
   const thisSectionInView = useInView(
@@ -23,8 +25,8 @@ function SecondSection({
   const onNameHovered = (e: React.MouseEvent) => {
     if (myPhotoRef.current) {
       setIsVisible(true);
-      myPhotoRef.current.style.left = e.clientX + "px";
-      myPhotoRef.current.style.top = e.clientY + "px";
+      myPhotoRef.current.style.left = (isMobileDevice ? e.clientX - 50 : e.clientX) + "px";
+      myPhotoRef.current.style.top = (isMobileDevice ? e.clientY - 50 : e.clientY) + "px";
     }
   };
   const onNameUnhovered = () => {
@@ -58,7 +60,7 @@ function SecondSection({
       <motion.h2
         initial={{ opacity: 0 }}
         animate={nameAnimateControls}
-        className="select-none text-[5rem]"
+        className="select-none text-[3rem] md:text-[5rem]"
       >
         Hi {savedName?.split(" ")[0]},{savedName && <br/>} My name is{" "}
         <motion.span
