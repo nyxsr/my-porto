@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { RefObject } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { CatCoding } from "@/assets/images";
 
 const AnimatedImage = motion(Image);
 function ThirdSection({
@@ -21,7 +22,7 @@ function ThirdSection({
     >
       <AnimatedImage
         style={{ y: catY }}
-        src={"https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif"}
+        src={CatCoding}
         alt="cat-coding"
         width={300}
         height={300}
