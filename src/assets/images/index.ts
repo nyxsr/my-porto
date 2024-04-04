@@ -13,3 +13,5 @@ export { default as NextLogo } from './logo/nextjs.webp'
 export { default as TailwindLogo } from './logo/tailwind.webp'
 export { default as ExpressLogo } from './logo/express.webp'
 export { default as FeedloopLogo } from './logo/feedloop.webp'
+
+export { default as CatCoding } from './cat-coding.gif'
