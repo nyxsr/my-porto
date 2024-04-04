@@ -157,7 +157,7 @@ export function Step2({
           onClick={() => {
             setStep(3);
             setTimeout(() => {
-              router.push("/portofolio");
+              router.push("/portfolio");
             }, 1000);
           }}
           className="bg-white p-3 text-[1.5rem] md:text-[3.5rem] focus:scale-90 text-black transition-all hover:scale-110"
