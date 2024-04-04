@@ -45,7 +45,7 @@ function SecondSection({
   return (
     <motion.section
       ref={secondSectionRef}
-      className="relative z-0 mx-10 mt-[10rem] flex min-h-[70vh] snap-center flex-col items-start justify-center"
+      className="relative z-0 mx-10 mt-[10rem] flex md:min-h-[70vh] snap-center flex-col items-start justify-center"
     >
       <motion.div
         animate={{ scale: isVisible ? 1 : 0, transition: { duration: 0.1 } }}

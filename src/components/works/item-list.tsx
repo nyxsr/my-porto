@@ -1,8 +1,9 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
+import { MdOutlineClose } from "react-icons/md";
 
 function ItemList({
   label,
@@ -48,19 +49,40 @@ function ItemList({
         </motion.div>
       )}
       {isMobileDevice ? (
-        <button className="focus:bg-[#f0fb3b] focus:text-[#1f1f1f] w-full text-left">{label}</button>
+        <>
+        <AnimatePresence>
+          {isVisible && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              exit={{ opacity: 0 }}
+              className="absolute z-[99] bg-white p-3 text-[#1f1f1f]"
+            >
+              <button className="absolute right-3 top-3 text-black text-3xl" onClick={() => setIsVisible(false)}><MdOutlineClose/></button>
+              <Image src={thumb} alt={label} width={300} height={300} />
+              <div>{description}</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+          <button
+            onClick={() => setIsVisible(!isVisible)}
+            className="w-full text-left active:bg-[#f0fb3b] active:text-[#1f1f1f]"
+          >
+            {label}
+          </button>
+        </>
       ) : (
-      <p
-        ref={itemRef}
-        onMouseEnter={itemOnHover}
-        onMouseLeave={() => setIsVisible(false)}
-        onMouseMove={itemOnHover}
-        className={twMerge(
-          `text-[2.5rem] font-bold uppercase leading-[5rem] transition-all hover:bg-[#f0fb3b] hover:text-[#1f1f1f]`,
-        )}
-      >
-        {label}
-      </p>
+        <p
+          ref={itemRef}
+          onMouseEnter={itemOnHover}
+          onMouseLeave={() => setIsVisible(false)}
+          onMouseMove={itemOnHover}
+          className={twMerge(
+            `text-[2.5rem] font-bold uppercase leading-[5rem] transition-all hover:bg-[#f0fb3b] hover:text-[#1f1f1f]`,
+          )}
+        >
+          {label}
+        </p>
       )}
     </motion.div>
   );

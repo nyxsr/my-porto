@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from "framer-motion";
-import Image from 'next/image';
 
 function FirstSection({firstSectionRef}: {firstSectionRef: React.Ref<HTMLDivElement>}) {
   return (

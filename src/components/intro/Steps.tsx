@@ -1,6 +1,7 @@
 import { generateRandomIntroNotTypeMessage } from "@/constants/message";
+import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
 import { motion } from "framer-motion";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -30,6 +31,7 @@ export function Step1({
   setName: React.Dispatch<React.SetStateAction<string>>;
   name: string;
 }) {
+  const isMobileDevice = useCheckDeviceScreen();
   return (
     <div>
       <motion.section
@@ -41,16 +43,16 @@ export function Step1({
         <motion.h1
           initial={{ y: 0 }}
           animate={{ y: -100, transition: { delay: 1, duration: 1 } }}
-          className="xl:text-[7rem] 2xl:text-[8rem]"
+          className="text-[1.5rem] xl:text-[7rem] 2xl:text-[8rem]"
         >
           What is your name ?
         </motion.h1>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center md:justify-between">
           <motion.input
             initial={{ opacity: 0, width: "3rem" }}
             animate={{
               opacity: 1,
-              width: "20rem",
+              width: isMobileDevice ? "70%" : "20rem",
               transition: { delay: 1, duration: 1 },
             }}
             type="text"
@@ -87,7 +89,7 @@ export function Step1({
           </motion.small>
         )}
         {name.length === 0 && isSubmitted && (
-          <motion.small className="mt-3 text-lg">
+          <motion.small className="mt-3 text-center md:text-left text-lg">
             {generateRandomIntroNotTypeMessage()}
           </motion.small>
         )}
@@ -137,7 +139,7 @@ export function Step2({
       exit={{ opacity: 0 }}
       className="flex min-h-screen flex-col items-center justify-center"
     >
-      <h1 className="text-[7rem]">Hi, {name}</h1>
+      <h1 className="text-[2rem] md:text-[7rem]">Hi, {name}</h1>
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 2, duration: 1 } }}
@@ -158,7 +160,7 @@ export function Step2({
               router.push("/portofolio");
             }, 1000);
           }}
-          className="bg-white p-3 text-[3.5rem] text-black transition-all hover:scale-110"
+          className="bg-white p-3 text-[1.5rem] md:text-[3.5rem] focus:scale-90 text-black transition-all hover:scale-110"
         >
           Yes, please
         </button>
@@ -168,7 +170,7 @@ export function Step2({
             setSavedName("");
             localStorage.removeItem("user_name_porto");
           }}
-          className="p-3 text-[1.25rem] hover:underline"
+          className="p-3 md:text-[1.25rem] hover:underline"
         >
           I think i just remember my real name
         </button>

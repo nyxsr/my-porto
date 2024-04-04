@@ -33,13 +33,15 @@ function FifthSection({
   const y = useTransform(
     scrollYProgress,
     [0, 0.5, 0.9, 1],
-    isMobileDevice ? [0, 100, 500, 600] : [-1000, 100, 1000, 1200],
+    isMobileDevice ? [0, 50, 100, 150] : [-1000, 100, 1000, 1200],
   );
   const reactY = useTransform(scrollYProgress, [0, 1], [-300, 500]);
   const tailwindY = useTransform(scrollYProgress, [0, 1], [-100, 300]);
+  const nextY = useTransform(scrollYProgress, [0, 1], [-500, 300]);
+  const framerY = useTransform(scrollYProgress, [0, 1], [-400, 250]);
   const smallTextOpacity = useTransform(
     scrollYProgress,
-    [0, 0.63, 0.64],
+    isMobileDevice ? [0, 0.10, 0.11] : [0, 0.63, 0.64],
     [0, 0, 1],
   );
 
@@ -48,7 +50,7 @@ function FifthSection({
       textAnimateControls.start({
         opacity: 1,
         transition: {
-          duration: 1,
+          duration: .2,
         },
       });
     } else {
@@ -80,12 +82,13 @@ function FifthSection({
   return (
     <section
       ref={fifthSectionRef}
-      className="relative z-0 mx-10 mt-[10rem] flex min-h-[150vh] snap-center flex-col items-center justify-center md:min-h-[200vh]"
+      className="relative z-0 mx-10 mt-[10rem] flex snap-y flex-col items-center justify-center min-h-[70vh] md:min-h-[200vh]"
     >
       <AnimatedImage
+        style={{ y: isMobileDevice ? nextY : undefined }}
         src={NextLogo}
         alt="nextjs logo"
-        width={isMobileDevice ? 300 : 500}
+        width={isMobileDevice ? 150 : 500}
         height={isMobileDevice ? 150 : 200}
         className="absolute left-0 opacity-25 invert filter"
       />
@@ -106,6 +109,7 @@ function FifthSection({
         className="absolute bottom-[20%] left-[10%] m-auto opacity-25"
       />
       <AnimatedImage
+        style={{ y: isMobileDevice ? framerY : undefined }}
         src={FramerLogo}
         alt="framer logo"
         width={isMobileDevice ? 200 : 400}

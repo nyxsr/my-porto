@@ -17,7 +17,7 @@ function ThirdSection({
   return (
     <section
       ref={thirdSectionRef}
-      className="relative z-0 mx-10 mt-[10rem] flex min-h-screen snap-center flex-col items-center justify-center"
+      className="relative z-0 mx-10 mt-[10rem] flex min-h-[80vh] md:min-h-screen snap-center flex-col items-center justify-center"
     >
       <AnimatedImage
         style={{ y: catY }}

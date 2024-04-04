@@ -1,8 +1,8 @@
 import React, { RefObject } from "react";
 import { motion, useAnimationControls, useInView } from "framer-motion";
-import { twMerge } from "tailwind-merge";
 import ItemList from "@/components/works/item-list";
 import { WORK_LIST } from "@/constants/list";
+import { v4 as uuidv4 } from 'uuid';
 
 function FourthSection({
   fourthSectionRef,
@@ -31,7 +31,7 @@ function FourthSection({
       animate={containerAnimateControls}
       ref={fourthSectionRef}
       viewport={{ once: true }}
-      className="relative z-0 mx-10 mt-[10rem] flex min-h-screen snap-center flex-col items-start justify-center"
+      className="relative z-10 mx-10 mt-[10rem] flex min-h-screen snap-center flex-col items-start justify-center"
     >
       <h2 className="static text-right md:absolute right-0 top-0 text-[3rem]">Selected Works</h2>
       <motion.div
@@ -48,7 +48,7 @@ function FourthSection({
         {WORK_LIST.map((item, index) => (
           <ItemList
             index={index}
-            key={crypto.randomUUID()}
+            key={uuidv4()}
             label={item.label}
             thumb={item.thumb}
             description={item.description}
