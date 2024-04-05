@@ -1,8 +1,11 @@
 {
   "extends": ["airbnb", "eslint:recommended", "next", "prettier"],
   "rules": {
-    "rules": {
-      "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
-    }
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "react/button-has-type": "off",
+    "react-hooks/rules-of-hooks": "off"
   }
 }

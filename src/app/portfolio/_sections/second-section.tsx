@@ -25,8 +25,8 @@ function SecondSection({
   const onNameHovered = (e: React.MouseEvent) => {
     if (myPhotoRef.current) {
       setIsVisible(true);
-      myPhotoRef.current.style.left = (isMobileDevice ? e.clientX - 50 : e.clientX) + "px";
-      myPhotoRef.current.style.top = (isMobileDevice ? e.clientY - 50 : e.clientY) + "px";
+      myPhotoRef.current.style.left = `${isMobileDevice ? e.clientX - 50 : e.clientX  }px`;
+      myPhotoRef.current.style.top = `${isMobileDevice ? e.clientY - 50 : e.clientY  }px`;
     }
   };
   const onNameUnhovered = () => {
@@ -78,7 +78,7 @@ function SecondSection({
         initial={{ opacity: 0 }}
         animate={posAnimateControls}
       >
-        I'm a <span className="text-[#f0fb3b] font-semibold">Front-End Developer</span>, but i have a passion in UI/UX and Backend
+        I&apos;m a <span className="text-[#f0fb3b] font-semibold">Front-End Developer</span>, but i have a passion in UI/UX and Backend
         Development.
       </motion.p>
     </motion.section>
