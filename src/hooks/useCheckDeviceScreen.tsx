@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React from "react";
 
 function useCheckDeviceScreen(): boolean {

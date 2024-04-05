@@ -23,8 +23,8 @@ function ItemList({
   const itemOnHover = (e: React.MouseEvent) => {
     if (menuRef.current) {
       setIsVisible(true);
-      menuRef.current.style.left = e.clientX + "px";
-      menuRef.current.style.top = e.clientY + (index > 1 ? -350 : 0) + "px";
+      menuRef.current.style.left = `${e.clientX  }px`;
+      menuRef.current.style.top = `${e.clientY + (index > 1 ? -350 : 0)  }px`;
     }
   };
   return (

@@ -3,15 +3,14 @@
 import React from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { twMerge } from "tailwind-merge";
+import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
+import { useRouter } from "next/navigation";
 import FirstSection from "./_sections/first-section";
 import SecondSection from "./_sections/second-section";
 import ThirdSection from "./_sections/third-section";
 import FourthSection from "./_sections/fourth-section";
 import FifthSection from "./_sections/fifth-section";
 import SixthSection from "./_sections/sixth-section";
-import useCheckDeviceScreen from "@/hooks/useCheckDeviceScreen";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 function page() {
   const [savedName, setSavedName] = React.useState("");
@@ -113,7 +112,7 @@ function page() {
               `h-[15rem] w-[15rem] cursor-pointer rounded-full border-2 border-dashed border-white transition-all hover:bg-[#f0fb3b]/50`,
               fourthInView && "border-white/30",
             )}
-          ></motion.div>
+           />
         </motion.div>
         <motion.div
           animate={{
@@ -139,7 +138,7 @@ function page() {
             }}
             style={bottomCircleStyle}
             className="flex items-center justify-center rounded-full border-2 border-dashed border-white transition-all md:z-20"
-          ></motion.div>
+           />
         </motion.div>
         {!isMobileDevice && (
           <div
@@ -149,11 +148,11 @@ function page() {
                 "bottom-[2rem] right-0 w-fit md:bottom-[5.5rem] md:right-[1.25rem]",
             )}
           >
-            <button className="transition-all hover:bg-[#f0fb3b] hover:text-black ">
+            <a href="/SAHRUL_RAMDAN_CV_UPDATE_5_APR_2024.pdf" download={"Sahrul Ramdan's CV.pdf"} className="transition-all hover:bg-[#f0fb3b] hover:text-black ">
               {firstInView
                 ? "just in case if u want to download the cv"
                 : "download cv"}
-            </button>
+            </a>
           </div>
         )}
         {topHovered && (

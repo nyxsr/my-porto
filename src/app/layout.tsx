@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "@/utils/smooth-scrolling";
+import React from "react";
 
 const raleway = Raleway({
   weight: ["400", "500", "600", "700", "800"],

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 import { AltStep1, Step0, Step1, Step2 } from "./Steps";
