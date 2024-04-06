@@ -12,6 +12,7 @@ const raleway = Raleway({
 export const metadata: Metadata = {
   title: "Sahrul Ramdan",
   description: "Sahrul Ramdan personal website",
+  keywords: ["portfolio", "sahrulramdan", "sahrul", "ramdan","frontend","developer","react"],
 };
 
 export default function RootLayout({
