@@ -10,6 +10,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://itsahrul.id"),
   title: "Sahrul Ramdan",
   description: "Sahrul Ramdan personal website",
   keywords: ["portfolio", "sahrulramdan", "sahrul", "ramdan","frontend","developer","react"],
