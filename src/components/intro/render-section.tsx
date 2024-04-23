@@ -19,7 +19,7 @@ export const renderIntro = () => {
     if (step === 0) {
       setTimeout(() => {
         setStep(1);
-      }, 3000);
+      }, 1500);
     }
   }, [step]);
 

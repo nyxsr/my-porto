@@ -1,0 +1,20 @@
+export const HOSTED_URL = "https://itsahrul.id";
+export const META_KEYWORDS = [
+  "portfolio",
+  "sahrulramdan",
+  "sahrul",
+  "ramdan",
+  "frontend",
+  "developer",
+  "react",
+  "backend",
+  "fullstack",
+  "engineer",
+  "software",
+  "subang",
+  "bandung",
+  "indonesia",
+  "experienced",
+  "berpengalaman",
+  "web",
+];
