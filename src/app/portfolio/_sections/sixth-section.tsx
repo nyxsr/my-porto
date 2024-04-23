@@ -21,6 +21,7 @@ function SixthSection({ savedName }: { savedName: string }) {
     offset: ["start end", "end end"],
   });
   const opacity = useTransform(scrollYProgress, [0, isMobileDevice ? 0.3 : 0.9, 1], [0, 0.2, 1]);
+  
   return (
     <motion.section
       ref={thisSectionRef}
@@ -51,7 +52,7 @@ function SixthSection({ savedName }: { savedName: string }) {
           />
         )}
       </AnimatePresence>
-      <p className="absolute bottom-10 right-10 md:left-10 md:text-[1.5rem] italic">See you around {`, ${  savedName}` ?? ""}</p>
+      <p className="absolute bottom-10 right-10 md:left-10 md:text-[1.5rem] italic">See you around {`, ${  savedName === null ? "there" : savedName}`}</p>
       <div className="relative z-10 flex w-full items-center justify-end">
         <div className="mr-10 max-w-[70vw] pt-[10rem] md:pt-0 text-[1.2rem] md:text-[2rem]">
           <p className="mt-16">

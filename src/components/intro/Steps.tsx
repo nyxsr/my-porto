@@ -9,7 +9,7 @@ export function Step0() {
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
+      animate={{ opacity: 1, transition: { duration: .3 } }}
       exit={{ opacity: 0 }}
       className="flex min-h-screen items-center justify-center"
     >
@@ -36,13 +36,13 @@ export function Step1({
     <div>
       <motion.section
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 1 } }}
+        animate={{ opacity: 1, transition: { duration: .6 } }}
         exit={{ opacity: 0 }}
         className="flex min-h-screen flex-col items-center justify-center"
       >
         <motion.h1
           initial={{ y: 0 }}
-          animate={{ y: -100, transition: { delay: 1, duration: 1 } }}
+          animate={{ y: -100, transition: { delay: .7, duration: .4 } }}
           className="text-[1.5rem] xl:text-[7rem] 2xl:text-[8rem]"
         >
           What is your name ?
@@ -53,7 +53,7 @@ export function Step1({
             animate={{
               opacity: 1,
               width: isMobileDevice ? "70%" : "20rem",
-              transition: { delay: 1, duration: 1 },
+              transition: { delay: .7, duration: .4 },
             }}
             type="text"
             name="name"
@@ -74,7 +74,7 @@ export function Step1({
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
-              transition: { delay: 2, duration: 0.5 },
+              transition: { delay: 1.5, duration: 0.5 },
             }}
             disabled={name.length > 15}
             className="rounded-full bg-white p-2 text-3xl text-black transition-all hover:scale-110 active:scale-90"
@@ -111,7 +111,7 @@ export function AltStep1({
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
+      animate={{ opacity: 1, transition: { duration: .3 } }}
       exit={{ opacity: 0 }}
       className="flex min-h-screen items-center justify-center"
     >
@@ -135,14 +135,14 @@ export function Step2({
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
+      animate={{ opacity: 1, transition: { duration: .3 } }}
       exit={{ opacity: 0 }}
       className="flex min-h-screen flex-col items-center justify-center"
     >
       <h1 className="text-[2rem] md:text-[7rem]">Hi, {name}</h1>
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { delay: 2, duration: 1 } }}
+        animate={{ opacity: 1, transition: { delay: 1, duration: .5 } }}
         exit={{ opacity: 0 }}
         className="text-center xl:text-[3rem] 2xl:text-[5rem]"
       >
@@ -150,7 +150,7 @@ export function Step2({
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 3 } }}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 1.2 } }}
         className="mt-10 flex flex-col gap-2"
       >
         <button
