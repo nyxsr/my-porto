@@ -148,7 +148,7 @@ function page() {
                 "bottom-[2rem] right-0 w-fit md:bottom-[5.5rem] md:right-[1.25rem]",
             )}
           >
-            <a href="/SAHRUL_RAMDAN_CV_UPDATE_5_APR_2024.pdf" download={"Sahrul Ramdan's CV.pdf"} className="transition-all hover:bg-[#f0fb3b] hover:text-black ">
+            <a href="/Sahrul_Ramdan_CV.pdf" download={"Sahrul Ramdan's CV.pdf"} className="transition-all hover:bg-[#f0fb3b] hover:text-black ">
               {firstInView
                 ? "just in case if u want to download the cv"
                 : "download cv"}
